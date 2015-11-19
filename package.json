@@ -1,0 +1,27 @@
+{
+  "name": "syncano-react",
+  "version": "0.0.9",
+  "description": "Syncano connector for React applications",
+  "main": "./lib",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prebuild": "rm -rf lib",
+    "lint": "gulp eslint",
+    "build": "/usr/local/bin/babel ./src --out-dir ./lib",
+    "prepublish": "npm run build"
+  },
+  "author": "Maciej Kucharz <maciej.kucharz@syncano.com> (http://syncano.io)",
+  "license": "MIT",
+  "babel": {
+   "presets": ["es2015"]
+  },
+  "devDependencies": {
+    "babel": "^6.1.18",
+    "babel-preset-es2015": "^6.1.18",
+    "gulp": "^3.9.0",
+    "gulp-eslint": "^1.1.0"
+  },
+  "dependencies": {
+    "syncano": "github:mkucharz/syncano-js-lib#master"
+  }
+}
