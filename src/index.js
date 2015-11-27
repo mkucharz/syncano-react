@@ -1,4 +1,4 @@
-import Syncano from 'syncano';
+import Syncano from "syncano";
 
 export class SyncanoReact {
   constructor(syncanoInstance, APIkey, component) {
@@ -17,20 +17,21 @@ export class SyncanoReact {
 
     let syncanoClass = syncanoObjectDef.syncanoClass;
     let dataObjectId = syncanoObjectDef.objectId;
-    let argInState = this.component.state[argInState];
+    let component = this.component;
 
     this.syncanoInstance.class(syncanoClass).dataobject(dataObjectId).detail().then((dataObject) => {
 
       let args = {};
-
       args[argNameInState] = dataObject;
-      this.component.setState(args);
+      component.setState(args);
 
       let channel = dataObject.channel;
       let realtime = this.syncanoInstance.channel(channel).watch();
 
       realtime.on('update', (data) => {
-        this.component.setState(Object.assign(argInState, data));
+        args = {};
+        args[argNameInState] = Object.assign(component.state[argNameInState], data);
+        component.setState(args);
       });
     });
   }
